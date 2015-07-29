@@ -1,7 +1,7 @@
 # Docker Piwik Nginx Image (francoisp/piwik)
 _maintained by francoisp_
 
-This container is derived from marvambass's Piwik image, it has enough state to be restarteable, and is based straight on the nginx reference image for clarity. It downloads the piwik install from the piwik website so if you build the image you'll get the most recent stable version of piwik.
+This image's scripts are derived from marvambass's Piwik image. It has enough state to be restarteable, and is based straight on the nginx reference image for clarity. It downloads the piwik install from the piwik website so if you build the image you'll get the most recent stable version of piwik.
 
 [FAQ - marvambass's Containers](https://marvin.im/docker-faq-all-you-need-to-know-about-the-marvambass-containers/)
 
