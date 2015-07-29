@@ -5,8 +5,6 @@ This container is derived from marvambass's Piwik image, it has enough state to 
 
 [FAQ - marvambass's Containers](https://marvin.im/docker-faq-all-you-need-to-know-about-the-marvambass-containers/)
 
-## What is it
-
 This Dockerfile (available as ___francoisp/piwik___) gives you a completly secure piwik.
 
 The php nginx setup comes from the commands in this [marvambass/nginx-ssl-php](https://registry.hub.docker.com/u/marvambass/nginx-ssl-php/) Image
