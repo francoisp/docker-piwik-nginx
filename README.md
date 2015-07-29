@@ -9,7 +9,7 @@ This Dockerfile (available as ___francoisp/piwik___) gives you a completly secur
 
 The php nginx setup comes from the commands in this [marvambass/nginx-ssl-php](https://registry.hub.docker.com/u/marvambass/nginx-ssl-php/) Image
 
-View in Docker Registry [francoisp/docker-piwik-nginx](https://registry.hub.docker.com/u/francoisp/docker-piwik-nginx/)
+View in Docker Registry [francoisp/piwik-nginx](https://registry.hub.docker.com/u/francoisp/piwik-nginx/)
 
 View in GitHub [francoisp/docker-piwik-nginx](https://github.com/francoisp/docker-piwik-nginx)
 
