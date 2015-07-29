@@ -1,19 +1,19 @@
 # Docker Piwik Nginx Image (francoisp/piwik)
-_maintained by francois_
+_maintained by francoisp_
 
 This container is derived from marvambass's Piwik image, it has enough state to be restarteable, and is based straight on the nginx reference image for clarity. It downloads the piwik install from the piwik website so if you build the image you'll get the most recent stable version of piwik.
 
-[FAQ - All you need to know about the marvambass Containers](https://marvin.im/docker-faq-all-you-need-to-know-about-the-marvambass-containers/)
+[FAQ - marvambass's Containers](https://marvin.im/docker-faq-all-you-need-to-know-about-the-marvambass-containers/)
 
 ## What is it
 
 This Dockerfile (available as ___francoisp/piwik___) gives you a completly secure piwik.
 
-It's derived from the commands in this [marvambass/nginx-ssl-php](https://registry.hub.docker.com/u/marvambass/nginx-ssl-php/) Image
+The php nginx setup comes from the commands in this [marvambass/nginx-ssl-php](https://registry.hub.docker.com/u/marvambass/nginx-ssl-php/) Image
 
-View in Docker Registry [francoisp/piwik](https://registry.hub.docker.com/u/francoisp/piwik/)
+View in Docker Registry [francoisp/docker-piwik-nginx](https://registry.hub.docker.com/u/francoisp/docker-piwik-nginx/)
 
-View in GitHub [MarvAmBass/docker-piwik](https://github.com/francoisp/docker-piwik)
+View in GitHub [francoisp/docker-piwik-nginx](https://github.com/francoisp/docker-piwik-nginx)
 
 ## Environment variables and defaults
 
@@ -76,16 +76,24 @@ Piwik Track Settings
 * __PIWIK\_HSTS\_HEADERS\_ENABLE\_NO\_SUBDOMAINS__
  * default: not set - if set together with __PIWIK\_HSTS\_HEADERS\_ENABLE__ and set to any value the HTTP Strict Transport Security will be deactivated on subdomains
 
-### Inherited Variables
+### Previously Inherited Variables
 
 * __DH\_SIZE__
  * default: 2048 if you need more security just use a higher value
- * inherited from [MarvAmBass/docker-nginx-ssl-secure](https://github.com/MarvAmBass/docker-nginx-ssl-secure)
+ * as was inherited from [MarvAmBass/docker-nginx-ssl-secure](https://github.com/MarvAmBass/docker-nginx-ssl-secure)
 
 ## Using the francoisp/piwik Container
 
-First you need a running MySQL Container (you could use: [marvambass/mysql](https://registry.hub.docker.com/u/marvambass/mysql/)).
+First you need a MySQL Container (the following command would give you one from the plain vanilla mysql )
 
-You need to _--link_ your mysql container to marvambass/piwik with the name __mysql__
+sudo docker run --name piwik-mysql -e MYSQL_ROOT_PASSWORD=strongMysqlpw -e MYSQL_DATABASE=piwik -e MYSQL_USER=piwik -e MYSQL_PASSWORD=strongPiwikpw  -d mysql
 
-    docker run -d -p 80:80 -p 443:443 --link mysql:mysql --name piwik marvambass/piwik
+Then you can create a container based on this source compiled as an image from dockerhub that _--link_ the myslql one:
+
+sudo docker run -d -p 80:80 -p 443:443 --name piwik --link piwik-mysql:mysql -e 'PIWIK_MYSQL_USER=piwik' -e 'PIWIK_MYSQL_PASSWORD=strongPiwikpw' -e 'PIWIK_ADMIN_PASSWORD=piwikPASS' francoisp/piwik-nginx
+
+If you need to build the image from source, for example to get the latest piwik archive in the image, you can clone this repo locally, and run
+
+sudo docker build -t youruser/piwik-nginx .
+
+
